@@ -27,12 +27,11 @@
         :rules="rules.password"
       />
       <div style="margin: 16px;">
-        <van-button round block type="info" native-type="submit">
-          注册
-        </van-button>
+        <van-button round block type="info" native-type="submit">注册</van-button>
       </div>
       <p class="tips">
-        已有账号？ 去 <router-link to="/login">登录</router-link>
+        现有账号? 去
+        <router-link to="/login">登录</router-link>
       </p>
     </van-form>
   </div>
@@ -86,7 +85,15 @@ export default {
       if (statusCode === 200) {
         // 注册成功提示并返回到login
         this.$toast.success(message)
-        this.$router.push('/login')
+        // this.$router.push('/login')
+        this.$router.push({
+          // 通过params传参，必须通过命令路由的方式， 通过路由的name属性
+          name: 'login',
+          params: {
+            username: this.user.username,
+            password: this.user.password
+          }
+        })
       } else {
         // 注册失败提示
         this.$toast.fail(message)
@@ -96,4 +103,15 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="less" scoped>
+// lang: 用于指定css语言  lang="less scss css"
+// scoped: 作用域 当前组件的样式带了scoped，这个样式只会在当前组件生效
+.tips {
+  font-size: 16px;
+  text-align: right;
+  padding: 15px;
+  a {
+    color: royalblue;
+  }
+}
+</style>

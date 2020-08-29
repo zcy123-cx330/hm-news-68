@@ -12,6 +12,7 @@ import HmLog from './components/HmLog.vue'
 import 'vant/lib/index.css'
 // 导入axios
 import axios from 'axios'
+// 导入amfe-flexible
 
 // 把axios挂载到vue的原型上
 Vue.prototype.$axios = axios
