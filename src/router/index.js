@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login'
 import Register from '../views/Register'
 import User from '../views/User.vue'
+import UserEdit from '../views/UserEdit.vue'
+import Demo from '../views/Demo.vue'
 
 Vue.use(VueRouter)
 
@@ -16,7 +18,9 @@ const routes = [
   // 指定的每一个路由规则都可以提供一个name属性
   { path: '/login', component: Login, name: 'login' },
   { path: '/register', component: Register, name: 'register' },
-  { path: '/user', component: User, name: 'user' }
+  { path: '/user', component: User, name: 'user' },
+  { path: '/user-edit', component: UserEdit, name: 'user-edit' },
+  { path: '/demo', component: Demo, name: 'demo' }
 ]
 
 const router = new VueRouter({
@@ -44,7 +48,10 @@ router.beforeEach(function(to, from, next) {
   //   next()
   // }
   const token = localStorage.getItem('token')
-  if (to.name !== 'user' || token) {
+  // 需要拦截的所有页面
+  const authUrls = ['/user', '/user-edit']
+  // includes 代表包含所有的   ！取反
+  if (!authUrls.includes(to.path) || token) {
     next()
   } else {
     router.push('/login')
