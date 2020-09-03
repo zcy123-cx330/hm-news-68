@@ -5,6 +5,8 @@ import Register from '../views/Register'
 import User from '../views/User.vue'
 import UserEdit from '../views/UserEdit.vue'
 import Demo from '../views/Demo.vue'
+import MyFollow from '../views/MyFollow.vue'
+import MyComment from '../views/MyComment.vue'
 
 Vue.use(VueRouter)
 
@@ -20,7 +22,9 @@ const routes = [
   { path: '/register', component: Register, name: 'register' },
   { path: '/user', component: User, name: 'user' },
   { path: '/user-edit', component: UserEdit, name: 'user-edit' },
-  { path: '/demo', component: Demo, name: 'demo' }
+  { path: '/demo', component: Demo, name: 'demo' },
+  { path: '/my-follow', component: MyFollow, name: 'my-follow' },
+  { path: '/mycomment', component: MyComment, name: 'mycomment' }
 ]
 
 const router = new VueRouter({
@@ -49,7 +53,7 @@ router.beforeEach(function(to, from, next) {
   // }
   const token = localStorage.getItem('token')
   // 需要拦截的所有页面
-  const authUrls = ['/user', '/user-edit']
+  const authUrls = ['/user', '/user-edit', '/my-follow', '/mycomment']
   // includes 代表包含所有的   ！取反
   if (!authUrls.includes(to.path) || token) {
     next()

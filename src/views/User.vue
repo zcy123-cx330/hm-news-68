@@ -23,11 +23,11 @@
           </div>
       </div>
       <!-- 导航条 -->
-      <hm-navitem to="/follow">
+      <hm-navitem to="/my-follow">
           <template>我的关注</template>
           <template #content>关注的用户</template>
       </hm-navitem>
-      <hm-navitem>
+      <hm-navitem  to="/mycomment">
           <template>我的跟帖</template>
           <template #content>跟帖/回复</template>
       </hm-navitem>
